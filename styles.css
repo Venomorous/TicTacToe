@@ -31,7 +31,16 @@ body {
     height: 100vh;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
 .counter {
+    width: 100%;
     display: flex;
     justify-content: space-around;
     /* justify-content: center; */
@@ -67,7 +76,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, auto);
     width: 100%;
-    height: 95%;
+    height: 100%;
     justify-content: center;
     align-items: center;
     justify-items: center;
@@ -190,4 +199,11 @@ body {
 
 .victory-screen.show {
     display: flex;
+}
+
+@media screen and (max-width: 530px) {
+    .counter h1 {
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+    }
 }
