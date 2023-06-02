@@ -1,0 +1,193 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #fff;
+    --secondary-color: #000;
+    --cell-size: 100px;
+    --marked-size: calc(var(--cell-size) * 0.9);
+}
+
+body {
+    background-image: linear-gradient(
+        45deg,
+        hsl(240deg 100% 20%) 0%,
+        hsl(289deg 100% 21%) 11%,
+        hsl(315deg 100% 27%) 22%,
+        hsl(329deg 100% 36%) 33%,
+        hsl(337deg 100% 43%) 44%,
+        hsl(357deg 91% 59%) 56%,
+        hsl(17deg 100% 59%) 67%,
+        hsl(34deg 100% 53%) 78%,
+        hsl(45deg 100% 50%) 89%,
+        hsl(55deg 100% 50%) 100%
+    );
+    width: 100%;
+    height: 100vh;
+}
+
+.counter {
+    display: flex;
+    /* justify-content: space-around; */
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border: 3px solid #000;
+}
+.counter h1 {
+    padding: 0 10%;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    background: #fff;
+    color: #000;
+}
+.counter h1:nth-child(1) {
+    border-left: 0;
+    background: #fff;
+    color: #000;
+}
+.counter h1:nth-child(2) {
+    /* padding: 0 4rem; */
+    background: #fff;
+    color: #000;
+}
+.counter h1:nth-child(3) {
+    /* padding-right: 0 2rem; */
+    border-right: 0;
+    background: #fff;
+    color: #000;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 100%;
+    height: 96%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+}
+.grid-element {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background: #fff;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.grid-element.x,
+.grid-element.o {
+    cursor: not-allowed;
+}
+
+.grid-element.x::before,
+.grid-element.x::after {
+    background-color: #000;
+}
+
+.grid-element.o::before {
+    background-color: #000;
+}
+.grid-element.o::after {
+    background-color: #fff;
+}
+
+.grid.x .grid-element:not(.x):not(.o):hover::before,
+.grid.x .grid-element:not(.x):not(.o):hover::after {
+    background-color: #aaaaaa;
+}
+
+.grid.o .grid-element:not(.x):not(.o):hover::before {
+    background-color: #aaaaaa;
+}
+
+.grid.o .grid-element:not(.x):not(.o):hover::after {
+    background-color: #fff;
+}
+
+.grid-element.x::before,
+.grid-element.x::after,
+.grid.x .grid-element:not(.x):not(.o):hover::before,
+.grid.x .grid-element:not(.x):not(.o):hover::after {
+    content: "";
+    position: absolute;
+    width: calc(var(--marked-size) * 0.2);
+    height: var(--marked-size);
+}
+
+.grid-element.x::before,
+.grid.x .grid-element:not(.x):not(.o):hover::before {
+    transform: rotate(45deg);
+}
+
+.grid-element.x::after,
+.grid.x .grid-element:not(.x):not(.o):hover::after {
+    transform: rotate(-45deg);
+}
+
+.grid-element.o::before,
+.grid-element.o::after,
+.grid.o .grid-element:not(.x):not(.o):hover::before,
+.grid.o .grid-element:not(.x):not(.o):hover::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.grid-element.o::before,
+.grid.o .grid-element:not(.x):not(.o):hover::before {
+    width: var(--marked-size);
+    height: var(--marked-size);
+}
+
+.grid-element.o::after,
+.grid.o .grid-element:not(.x):not(.o):hover::after {
+    width: calc(var(--marked-size) * 0.7);
+    height: calc(var(--marked-size) * 0.7);
+}
+
+.victory-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 5rem;
+    flex-direction: column;
+}
+
+.victory-screen button {
+    font-size: 3rem;
+    padding: 1rem;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+}
+
+.victory-screen button:hover {
+    border-color: #fff;
+    background: #000;
+    color: #fff;
+}
+
+.victory-screen.show {
+    display: flex;
+}
